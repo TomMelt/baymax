@@ -4,7 +4,7 @@ import json
 import requests
 import time
 import unidecode
-from motor import moveF
+from motor import moveF, moveB, moveL, moveR
 
 app = Flask(__name__)
 ask = Ask(app, "/robot_commands")
@@ -32,6 +32,20 @@ def forward_intent(ForwardNumber):
 def backward_intent(BackwardNumber):
     moveB(distance=BackwardNumber)
     go_msg= '...moving backward '+str(BackwardNumber)+' steps'+str(type(BackwardNumber))
+    return question(go_msg)
+
+
+@ask.intent("RightIntent",convert={"RightNumber":int})
+def forward_intent(RightNumber):
+    moveR(angle=RightNumber)
+    go_msg= '...turning right '+str(RightNumber)+' degrees'+str(type(RightNumber))
+    return question(go_msg)
+
+
+@ask.intent("LeftIntent",convert={"LeftNumber":int})
+def forward_intent(LeftNumber):
+    moveL(angle=LeftNumber)
+    go_msg= '...turning left '+str(LeftNumber)+' degrees'+str(type(LeftNumber))
     return question(go_msg)
 
 

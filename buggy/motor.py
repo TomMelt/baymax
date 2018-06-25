@@ -88,6 +88,12 @@ def moveF(distance=1, speed=_normal):
     stopmotors()
 
 
+def moveR(angle=90, speed=_normal):
+    turnRight(DutyCycle=speed)
+    time.sleep(angle*_turn_unit)
+    stopmotors()
+
+
 def moveL(angle=90, speed=_normal):
     turnLeft(DutyCycle=speed)
     time.sleep(angle*_turn_unit)
