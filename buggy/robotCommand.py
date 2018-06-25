@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_ask import Ask, statement, question, session
+from flask_ask import Ask, statement, question, session,convert_errors
 import json
 import requests
 import time
@@ -21,32 +21,44 @@ def start_skill():
     return question(welcome_message)
 
 
-@ask.intent("ForwardIntent",default={"ForwardNumber":1},convert={"ForwardNumber":int})
+@ask.intent("ForwardIntent",convert={"ForwardNumber":int})
 def forward_intent(ForwardNumber):
-    moveF(distance=ForwardNumber)
-    go_msg= '...moving forward '+str(ForwardNumber)+' steps'+str(type(ForwardNumber))
-    return question(go_msg)
+    if "ForwardNumber" in convert_errors:
+    	return question("did not understand the answer please repeat")
+    else:
+        moveF(distance=ForwardNumber)
+        go_msg= '...moving forward '+str(ForwardNumber)+' steps'+str(type(ForwardNumber))
+        return question(go_msg)
 
 
-@ask.intent("BackwardIntent",default={"BackwardNumber":1},convert={"BackwardNumber":int})
+@ask.intent("BackwardIntent",convert={"BackwardNumber":int})
 def backward_intent(BackwardNumber):
-    moveB(distance=BackwardNumber)
-    go_msg= '...moving backward '+str(BackwardNumber)+' steps'+str(type(BackwardNumber))
-    return question(go_msg)
+    if "BackwardNumber" in convert_errors:
+        return question("did not understand the answer please repeat")
+    else:
+        moveB(distance=BackwardNumber)
+        go_msg= '...moving backward '+str(BackwardNumber)+' steps'+str(type(BackwardNumber))
+        return question(go_msg)
 
 
-@ask.intent("RightIntent",default={"RightNumber":90},convert={"RightNumber":int})
+@ask.intent("RightIntent",convert={"RightNumber":int})
 def forward_intent(RightNumber):
-    moveR(angle=RightNumber)
-    go_msg= '...turning right '+str(RightNumber)+' degrees'+str(type(RightNumber))
-    return question(go_msg)
+    if "RightNumber" in convert_errors :
+        return question("did not understand the answer please repeat")
+    else:
+        moveR(angle=RightNumber)
+        go_msg= '...turning right '+str(RightNumber)+' degrees'+str(type(RightNumber))
+        return question(go_msg)
 
 
-@ask.intent("LeftIntent",default={"LeftNumber":90},convert={"LeftNumber":int})
+@ask.intent("LeftIntent",convert={"LeftNumber":int})
 def forward_intent(LeftNumber):
-    moveL(angle=LeftNumber)
-    go_msg= '...turning left '+str(LeftNumber)+' degrees'+str(type(LeftNumber))
-    return question(go_msg)
+    if "LeftNumber" in convert_errors:
+        return question("did not understand the answer please repeat")
+    else:
+        moveL(angle=LeftNumber)
+        go_msg= '...turning left '+str(LeftNumber)+' degrees'+str(type(LeftNumber))
+        return question(go_msg)
 
 
 @ask.intent("NoIntent")
