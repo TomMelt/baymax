@@ -34,44 +34,44 @@ pwmMotorBForwards = GPIO.PWM(pinMotorBForwards, Frequency)
 pwmMotorBBackwards = GPIO.PWM(pinMotorBBackwards, Frequency)
 
 # turn off all motors
-pwmMotorAForwards.start(Stop)
-pwmMotorABackwards.start(Stop)
-pwmMotorBForwards.start(Stop)
-pwmMotorBBackwards.start(Stop)
+pwmMotorAForwards.start(_Stop)
+pwmMotorABackwards.start(_Stop)
+pwmMotorBForwards.start(_Stop)
+pwmMotorBBackwards.start(_Stop)
 
 
 def stopmotors():
-    pwmMotorAForwards.ChangeDutyCycle(Stop)
-    pwmMotorABackwards.ChangeDutyCycle(Stop)
-    pwmMotorBForwards.ChangeDutyCycle(Stop)
-    pwmMotorBBackwards.ChangeDutyCycle(Stop)
+    pwmMotorAForwards.ChangeDutyCycle(_Stop)
+    pwmMotorABackwards.ChangeDutyCycle(_Stop)
+    pwmMotorBForwards.ChangeDutyCycle(_Stop)
+    pwmMotorBBackwards.ChangeDutyCycle(_Stop)
 
 
 def goForward(DutyCycle=_normal):
     pwmMotorAForwards.ChangeDutyCycle(DutyCycle)
-    pwmMotorABackwards.ChangeDutyCycle(Stop)
+    pwmMotorABackwards.ChangeDutyCycle(_Stop)
     pwmMotorBForwards.ChangeDutyCycle(DutyCycle*scale)
-    pwmMotorBBackwards.ChangeDutyCycle(Stop)
+    pwmMotorBBackwards.ChangeDutyCycle(_Stop)
 
 
 def goBack(DutyCycle=_normal):
-    pwmMotorAForwards.ChangeDutyCycle(Stop)
+    pwmMotorAForwards.ChangeDutyCycle(_Stop)
     pwmMotorABackwards.ChangeDutyCycle(DutyCycle)
-    pwmMotorBForwards.ChangeDutyCycle(Stop)
+    pwmMotorBForwards.ChangeDutyCycle(_Stop)
     pwmMotorBBackwards.ChangeDutyCycle(DutyCycle*scale)
 
 
 def turnLeft(DutyCycle=_normal):
-    pwmMotorAForwards.ChangeDutyCycle(Stop)
+    pwmMotorAForwards.ChangeDutyCycle(_Stop)
     pwmMotorABackwards.ChangeDutyCycle(DutyCycle)
     pwmMotorBForwards.ChangeDutyCycle(DutyCycle*scale)
-    pwmMotorBBackwards.ChangeDutyCycle(Stop)
+    pwmMotorBBackwards.ChangeDutyCycle(_Stop)
 
 
 def turnRight(DutyCycle=_normal):
     pwmMotorAForwards.ChangeDutyCycle(DutyCycle)
-    pwmMotorABackwards.ChangeDutyCycle(Stop)
-    pwmMotorBForwards.ChangeDutyCycle(Stop)
+    pwmMotorABackwards.ChangeDutyCycle(_Stop)
+    pwmMotorBForwards.ChangeDutyCycle(_Stop)
     pwmMotorBBackwards.ChangeDutyCycle(DutyCycle*scale)
 
 
@@ -83,8 +83,8 @@ def moveF(distance=1, speed=_normal):
 
 
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
 
-    moveF(distance=1, speed=_normal)
+#    moveF(distance=1, speed=_normal)
 
-    GPIO.cleanup()
+#    GPIO.cleanup()

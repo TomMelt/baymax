@@ -4,7 +4,7 @@ import json
 import requests
 import time
 import unidecode
-from .motor import moveF
+from motor import moveF
 
 app = Flask(__name__)
 ask = Ask(app, "/robot_commands")
@@ -22,7 +22,7 @@ def start_skill():
 @ask.intent("ForwardIntent")
 def forward_intent(ForwardNumber):
     moveF()
-    go_msg= 'The sky is the limit, moving forward'
+    go_msg= 'The sky is the limit, moving forward much'
     return statement(go_msg)
 
 
