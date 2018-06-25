@@ -14,22 +14,24 @@ ask = Ask(app, "/robot_commands")
 def homepage():
     return "hi there, how ya doin?"
 
+
 @ask.launch
 def start_skill():
     welcome_message = 'Hey homies, I am the best robot'
     return question(welcome_message)
 
+
 @ask.intent("ForwardIntent",convert={"ForwardNumber":int})
 def forward_intent(ForwardNumber):
     moveF(distance=ForwardNumber)
-    go_msg= '...moving forward '+str(ForwardNumber)+' steps'
+    go_msg= '...moving forward '+str(ForwardNumber)+' steps'+str(type(ForwardNumber))
     return question(go_msg)
 
 
 @ask.intent("BackwardIntent",convert={"BackwardNumber":int})
 def backward_intent(BackwardNumber):
-    moveF(distance=BackwardNumber)
-    go_msg= '...moving backward '+str(BackwardNumber)+' steps'
+    moveB(distance=BackwardNumber)
+    go_msg= '...moving backward '+str(BackwardNumber)+' steps'+str(type(BackwardNumber))
     return question(go_msg)
 
 
