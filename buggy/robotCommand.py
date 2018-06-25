@@ -21,28 +21,28 @@ def start_skill():
     return question(welcome_message)
 
 
-@ask.intent("ForwardIntent",convert={"ForwardNumber":int})
+@ask.intent("ForwardIntent",default={"ForwardNumber":1},convert={"ForwardNumber":int})
 def forward_intent(ForwardNumber):
     moveF(distance=ForwardNumber)
     go_msg= '...moving forward '+str(ForwardNumber)+' steps'+str(type(ForwardNumber))
     return question(go_msg)
 
 
-@ask.intent("BackwardIntent",convert={"BackwardNumber":int})
+@ask.intent("BackwardIntent",default={"BackwardNumber":1},convert={"BackwardNumber":int})
 def backward_intent(BackwardNumber):
     moveB(distance=BackwardNumber)
     go_msg= '...moving backward '+str(BackwardNumber)+' steps'+str(type(BackwardNumber))
     return question(go_msg)
 
 
-@ask.intent("RightIntent",convert={"RightNumber":int})
+@ask.intent("RightIntent",default={"RightNumber":90},convert={"RightNumber":int})
 def forward_intent(RightNumber):
     moveR(angle=RightNumber)
     go_msg= '...turning right '+str(RightNumber)+' degrees'+str(type(RightNumber))
     return question(go_msg)
 
 
-@ask.intent("LeftIntent",convert={"LeftNumber":int})
+@ask.intent("LeftIntent",default={"LeftNumber":90},convert={"LeftNumber":int})
 def forward_intent(LeftNumber):
     moveL(angle=LeftNumber)
     go_msg= '...turning left '+str(LeftNumber)+' degrees'+str(type(LeftNumber))
