@@ -23,20 +23,21 @@ def start_skill():
 def forward_intent(ForwardNumber):
     moveF(distance=ForwardNumber)
     go_msg= '...moving forward '+str(ForwardNumber)+' steps'
-    return statement(go_msg)
+    return question(go_msg)
 
 
 @ask.intent("BackwardIntent",convert={"BackwardNumber":int})
 def backward_intent(BackwardNumber):
     moveF(distance=BackwardNumber)
     go_msg= '...moving backward '+str(BackwardNumber)+' steps'
-    return statement(go_msg)
+    return question(go_msg)
 
 
 @ask.intent("NoIntent")
 def no_intent():
     bye_text = 'I am not sure why you asked me to run then, but okay... bye'
-    return statement(bye_text)
-    
+    return question(bye_text)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
