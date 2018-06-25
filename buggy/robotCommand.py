@@ -19,19 +19,18 @@ def start_skill():
     welcome_message = 'Hey homies, I am the best robot'
     return question(welcome_message)
 
-@ask.intent("ForwardIntent")
+@ask.intent("ForwardIntent",convert={"ForwardNumber":int})
 def forward_intent(ForwardNumber):
-    moveF()
-    go_msg= 'The sky is the limit, moving forward much'
+    moveF(distance=ForwardNumber)
+    go_msg= '...moving forward '+str(ForwardNumber)+' steps'
     return statement(go_msg)
 
 
 @ask.intent("BackwardIntent",convert={"BackwardNumber":int})
 def backward_intent(BackwardNumber):
-    go_msg= 'I am not a coward but moving forward {}'.format(BackwardNumber)
+    moveF(distance=BackwardNumber)
+    go_msg= '...moving backward '+str(BackwardNumber)+' steps'
     return statement(go_msg)
-
-
 
 
 @ask.intent("NoIntent")

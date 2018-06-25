@@ -75,6 +75,12 @@ def turnRight(DutyCycle=_normal):
     pwmMotorBBackwards.ChangeDutyCycle(DutyCycle*scale)
 
 
+def moveB(distance=1, speed=_normal):
+    goForward(DutyCycle=speed)
+    time.sleep(distance*_dist_unit)
+    stopmotors()
+
+
 def moveF(distance=1, speed=_normal):
     goForward(DutyCycle=speed)
     time.sleep(distance*_dist_unit)
