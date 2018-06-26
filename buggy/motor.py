@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+from ultrasound import Distance
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -83,9 +84,13 @@ def moveB(distance=1, speed=_normal):
 
 
 def moveF(distance=1, speed=_normal):
-    goForward(DutyCycle=speed)
-    time.sleep(distance*_dist_unit)
-    stopmotors()
+    if Distance() > 0.4:
+        goForward(DutyCycle=speed)
+        time.sleep(distance*_dist_unit)
+        stopmotors()
+        return True
+    else:
+        return False
 
 
 def moveR(angle=90, speed=_normal):

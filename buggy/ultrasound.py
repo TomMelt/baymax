@@ -1,7 +1,9 @@
 from gpiozero import DistanceSensor
 from time import sleep
 
-sensor = DistanceSensor(echo=18, trigger=17)
-while True:
-    print('Distance: ', sensor.distance * 100)
-    sleep(1)
+
+def Distance(sleeptime=0.1):
+    sensor = DistanceSensor(echo=18, trigger=17)
+    distance = sensor.distance * 100
+    sleep(sleeptime)
+    return distance

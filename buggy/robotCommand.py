@@ -26,9 +26,12 @@ def forward_intent(ForwardNumber):
     if "ForwardNumber" in convert_errors:
     	return question("did not understand the answer please repeat")
     else:
-        moveF(distance=ForwardNumber)
-        go_msg= '...moving forward '+str(ForwardNumber)+' steps'+str(type(ForwardNumber))
-        return question(go_msg)
+        if moveF(distance=ForwardNumber):
+            go_msg= '...moving forward '+str(ForwardNumber)+' steps'
+            return question(go_msg)
+        else:
+            go_msg= '...we are going to crash!'
+            return question(go_msg)
 
 
 @ask.intent("BackwardIntent",convert={"BackwardNumber":int})
@@ -37,7 +40,7 @@ def backward_intent(BackwardNumber):
         return question("did not understand the answer please repeat")
     else:
         moveB(distance=BackwardNumber)
-        go_msg= '...moving backward '+str(BackwardNumber)+' steps'+str(type(BackwardNumber))
+        go_msg= '...moving backward '+str(BackwardNumber)+' steps'
         return question(go_msg)
 
 
@@ -47,7 +50,7 @@ def right_intent(RightNumber):
         return question("did not understand the answer please repeat")
     else:
         moveR(angle=RightNumber)
-        go_msg= '...turning right '+str(RightNumber)+' degrees'+str(type(RightNumber))
+        go_msg= '...turning right '+str(RightNumber)+' degrees'
         return question(go_msg)
 
 
@@ -57,7 +60,7 @@ def left_intent(LeftNumber):
         return question("did not understand the answer please repeat")
     else:
         moveL(angle=LeftNumber)
-        go_msg= '...turning left '+str(LeftNumber)+' degrees'+str(type(LeftNumber))
+        go_msg= '...turning left '+str(LeftNumber)+' degrees'
         return question(go_msg)
 
 
