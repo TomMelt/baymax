@@ -42,7 +42,7 @@ def backward_intent(BackwardNumber):
 
 
 @ask.intent("RightIntent",convert={"RightNumber":int})
-def forward_intent(RightNumber):
+def right_intent(RightNumber):
     if "RightNumber" in convert_errors :
         return question("did not understand the answer please repeat")
     else:
@@ -52,7 +52,7 @@ def forward_intent(RightNumber):
 
 
 @ask.intent("LeftIntent",convert={"LeftNumber":int})
-def forward_intent(LeftNumber):
+def left_intent(LeftNumber):
     if "LeftNumber" in convert_errors:
         return question("did not understand the answer please repeat")
     else:
