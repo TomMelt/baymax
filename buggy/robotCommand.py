@@ -21,6 +21,44 @@ def start_skill():
     return question(welcome_message)
 
 
+def moveD(direction, length):
+    if direction[0].upper() == "F":
+        moveF(distance=length)
+        msg = 'moving forward '+str(length)+' steps'
+    if direction[0].upper() == "B":
+        moveL(angle=180)
+        moveF(distance=length)
+        moveR(angle=180)
+        msg = 'moving backward '+str(length)+' steps'
+    if direction[0].upper() == "R":
+        moveR(angle=90)
+        moveF(distance=length)
+        msg = 'moving right '+str(length)+' steps'
+    if direction[0].upper() == "L":
+        moveL(angle=90)
+        moveF(distance=length)
+        msg = 'moving left '+str(length)+' steps'
+    return msg
+
+
+@ask.intent(
+        "MoveIntent", convert={
+            "direction":str,
+            "length":int,
+            "directiontwo":str,
+            "lengthtwo":int,
+            }
+        )
+def move_intent(direction, length, directiontwo, lengthtwo):
+    if isinstance(direction+directiontwo, str) and isinstance(length+lengthtwo, int):
+        msg1 = moveD(direction=direction, length=length)
+        msg2 = moveD(direction=directiontwo, length=lengthtwo)
+        return question(msg1+msg2)
+    else:
+        print([type(i) for i in [direction, length, directiontwo, lengthtwo]])
+        return question("please try again.")
+
+
 @ask.intent("ForwardIntent",convert={"ForwardNumber":int})
 def forward_intent(ForwardNumber):
     if isinstance(ForwardNumber, int):
@@ -62,6 +100,12 @@ def left_intent(LeftNumber):
         return question(go_msg)
     else:
         return question("please try again.")
+
+
+@ask.intent("SelfDestruct")
+def self_intent():
+    msg = 'Self Destruct... in 5... 4... 3... 2... 1... I dont wanna dieeeeeee. Overiding self destruct. phew that was a close one.'
+    return question(msg)
 
 
 @ask.intent("NoIntent")
