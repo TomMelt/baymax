@@ -119,7 +119,7 @@ def describe_intent():
 
 @ask.intent("SelfDestruct")
 def self_intent():
-    msg = 'Self Destruct... in 5... 4... 3... 2... 1... I dont wanna dieeeeeee. Overiding self destruct. phew that was a close one.'
+    msg = 'Self Destruct... in 5... 4... 3... 2... 1... I dont wanna die. Overiding self destruct. phew that was a close one.'
     return question(msg)
 
 
