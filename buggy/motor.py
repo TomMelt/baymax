@@ -17,7 +17,7 @@ _slow = 20
 _Stop = 0
 
 _dist_unit = 1
-_turn_unit = 1./270.
+_turn_unit = 1./255.
 
 Frequency = 50
 
@@ -84,6 +84,7 @@ def moveB(distance=1, speed=_normal):
 
 
 def moveF(distance=1, speed=_normal):
+    print(Distance())
     if Distance() > 0.4:
         goForward(DutyCycle=speed)
         time.sleep(distance*_dist_unit)
@@ -95,7 +96,7 @@ def moveF(distance=1, speed=_normal):
 
 def moveR(angle=90, speed=_normal):
     turnRight(DutyCycle=speed)
-    time.sleep(angle*_turn_unit)
+    time.sleep(angle*_turn_unit*0.95)
     stopmotors()
 
 

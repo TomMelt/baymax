@@ -3,8 +3,10 @@ from time import sleep
 import numpy as np
 
 
+sensor = DistanceSensor(echo=18, trigger=17)
+
+
 def Distance(sleeptime=0.1):
-    sensor = DistanceSensor(echo=18, trigger=17)
     distance = sensor.distance * 100
     sleep(sleeptime)
     return distance

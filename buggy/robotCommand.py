@@ -6,6 +6,7 @@ import time
 import unidecode
 from motor import moveF, moveB, moveL, moveR
 from camera import picture
+from apiCall import analyze
 
 app = Flask(__name__)
 ask = Ask(app, "/robot_commands")
@@ -103,11 +104,17 @@ def left_intent(LeftNumber):
         return question("please try again.")
 
 
-@ask.intent("DescribeSurrounding")
-def self_intent():
+@ask.intent("DescribePicture")
+def describe_intent():
     filename = picture()
-    msg = 'I have taken a picture'
-    return question(msg)
+    filename = '/home/pi/Documents/baymax/buggy/'+filename
+    print(filename)
+    detected = analyze(filename)
+    print(detected[0])
+    objects_detected = [object[0] for object in detected if object[1]>0.6]
+    msg = 'I see'
+    str_seen = " and ".join(objects_detected)
+    return question(msg+" "+str_seen)
 
 
 @ask.intent("SelfDestruct")
