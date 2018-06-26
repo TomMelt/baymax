@@ -5,6 +5,7 @@ import requests
 import time
 import unidecode
 from motor import moveF, moveB, moveL, moveR
+from camera import picture
 
 app = Flask(__name__)
 ask = Ask(app, "/robot_commands")
@@ -100,6 +101,13 @@ def left_intent(LeftNumber):
         return question(go_msg)
     else:
         return question("please try again.")
+
+
+@ask.intent("DescribeSurrounding")
+def self_intent():
+    filename = picture()
+    msg = 'I have taken a picture'
+    return question(msg)
 
 
 @ask.intent("SelfDestruct")
